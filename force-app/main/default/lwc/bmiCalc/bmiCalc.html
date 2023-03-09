@@ -1,3 +1,70 @@
 <template>
-    <lightning-card>BMI CALCULATOR</lightning-card>
+  <div class="mainContainer">
+    <div class="container">
+      <div class="upperBox">
+        <h1>BMI CALCULATOR</h1>
+        <template if:true={bmiFixedValue}>
+          <section class="sectionClass">
+            <h2>Your BMI IS:</h2>
+            <div class="slds-text-align_center slds-text-color_weak resultDiv">
+              {bmiFixedValue}
+            </div>
+            <h2>You Are:</h2>
+            <div class="slds-text-align_center slds-text-color_weak resultDiv">
+              {result}
+            </div>
+            <button
+              class="slds-var-m-around_medium submitButton"
+              onclick={resubmitHandler}
+            >
+              ReSubmit
+            </button>
+          </section>
+        </template>
+        <!-- form for the input fields -->
+        <div class="formDiv">
+          <template if:false={bmiFixedValue}>
+            <form>
+              <div class="heightLabel">
+                <label for="height">Height(in m)</label>
+              </div>
+              <div>
+                <input type="number" id="height" class="heightInput" min="0" />
+              </div>
+              <div class="weightLabel">
+                <label for="weight">Weight(in kg)</label>
+              </div>
+              <div>
+                <input type="number" id="weight" class="weightInput" min="0" />
+              </div>
+              <div>
+                <button
+                  class="slds-var-m-around_medium submitButton"
+                  onclick={submitHandler}
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </template>
+        </div>
+      </div>
+      <!-- lower box displaying information -->
+      <div class="lowerBox">
+        <h3 class="slds-text-color_error">What Your BMI Means?</h3>
+        <p>
+          BMI is a person's weight in kilograms (or pounds) divided by the
+          square of height in meters (or feet).
+        </p>
+        <h3 class="slds-text-color_error">Under 18.5</h3>
+        <p>You are Underweight</p>
+        <h3 class="slds-text-color_success">Between 18.5 and 24.9</h3>
+        <p>You have a healthy weight.</p>
+        <h3 class="slds-text-color_error">Between 25 and 29.9</h3>
+        <p>You are Overweight</p>
+        <h3 class="slds-text-color_error">Over 30</h3>
+        <p>You are Obese</p>
+      </div>
+    </div>
+  </div>
 </template>
